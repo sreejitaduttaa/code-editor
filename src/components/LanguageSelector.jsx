@@ -3,20 +3,19 @@ import { LANGUAGE_VERSIONS } from "../constants"
 
 const languages = Object.entries(LANGUAGE_VERSIONS);
 
-const LanguageSelector = () => {
+const LanguageSelector = ({language,onSelect}) => {
     return (
         <Box>
             <Text mb={2} fontSize='lg'>Language: </Text>
             <Menu>
-                <MenuButton as={Button}>
-                    Javascript
-                </MenuButton>
+                <MenuButton as={Button}>{language}</MenuButton>
                 <MenuList>
                     {
                         languages.map(([language,version]) => (
-                            <MenuItem key={language}>{language}
-                            &nbsp;
-                            <Text as="span" color="gray.600" fontSize="sm">{version}</Text>
+                            <MenuItem key={language} onClick={()=>onSelect(language)}>
+                                {language}
+                                &nbsp;
+                                <Text as="span" color="gray.600"        fontSize="sm">{version}</Text>
                             </MenuItem>
                         ))
                     }
